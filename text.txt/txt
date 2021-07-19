@@ -1,0 +1,76 @@
+//cleaning process--
+
+// deleted file--
+app.css
+app.test.js
+logo.svg
+reportwebVitals.js
+setupTests.js
+
+// At src folder-
+// App.js
+remove content inside App() function.
+just have - 
+function App() {
+  return <div></div>;
+}
+
+remove both the imports in line 1 and 2.
+
+//index.js
+remove-
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+import reportWebVitals from './reportWebVitals';
+
+
+//index.css
+remove everthing.
+add - (our 1st task while dealing css.)
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+// we wouldn't be touching html file for now.
+
+//index.js 
+import(ES6 syntax) or require
+import React from "react";
+ or we may write- const React = require("react");
+
+ // App.js index.js
+ //App.js
+  
+ function App() {
+  return (
+    <div>
+      <h1>Runu</h1>
+    </div>
+  );
+}
+
+index.js
+<App /> <=> <div>
+            <h1>Runu</h1>
+            </div>
+it will print "runu"
+
+//we are developing our own user-defined tag in jsx(index.jsx) like <App /> by using name of that function(App.jsx).
+
+//components-a building block-a resuable piece of code like App.js file
+            -App.js is being used multiple time in index.js
+            -component name always start with capital letter.
+
+// In react: renamed js file to jsx file which content jsx code inside js file.
+   .jsx = .js
+
+//export(ES6 syntax) or exports 
+ export default User;
+ or  module.exports = User;
+
+  AT STATE: clear user.jsx we will use class 

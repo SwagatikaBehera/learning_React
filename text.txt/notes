@@ -1,0 +1,144 @@
+//index.js 
+import(ES6 syntax) or require
+import React from "react";
+ or we may write- const React = require("react");
+
+//In JSX: we are developing our own user-defined tag in jsx(index.jsx) like <App /> by using name of that function(App.jsx).
+
+//components-a building block-a resuable piece of code like App.js file
+            -App.js is being used multiple time in index.js
+            -component name always start with capital letter.
+
+// In react: renamed js file to jsx file which content jsx code inside js file.
+   .jsx = .js
+
+//export(ES6 syntax) or exports 
+ export default User;
+ or  module.exports = User;
+
+ In "default" export we can name import by any name
+ like: import Runu from "./components/user"
+
+ Runu is being used as component name then
+ like:
+import Runu from "./components/user"
+function App() {
+  return (
+    <div>
+      <h1>runu</h1>
+      <Runu />
+    </div>
+  );
+}
+
+//props : parameters/properties : for dynamic caliing
+PROPS: A DATA THAT IS BEING PASSED FROM ONE COMPONENT TO ANOTHER.
+const User = (props/ parameters /properties) =>{};
+
+//In JSX, to add javascript we use {}
+like: <h1>{props.name}</h1>
+
+//how props is passed-
+<User name="Runu" description="FSWD" />  //like html attributes
+<User name="Sneha" description="FSWD" /> //same component being used dynamicaaly using props
+
+//STATE: A SET OF DATA THAT AN INDIVIDUAL COMPOENENT HOLDS.
+to use STATE we call class component:
+class User extends React.Component {}
+
+to use props in class we call construct CONSTRUCTOR.
+import React from "react";
+
+class User extends React.Component {
+  constructor(props) {     //for using props and state
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1> {this.props.name} </h1>   //this being used before props
+        <p>{this.props.description}</p>
+      </div>
+    );
+  }
+}
+
+export default User;
+
+to pass a STATE in class component:
+import React from "react";
+
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      planet: "earth",  //data only User component can hold,no other component can access this data
+    };                   
+  }
+
+  render() {
+      //Component Life-Cycle methods
+    return (
+      <div>
+        <h1> {this.props.name} </h1>
+        <p> {this.props.description} </p>
+        <h3> {this.state.planet} </h3>   //used by this component only
+      </div>
+    );
+  }
+}
+
+export default User;
+
+BUT BY USING CLASS COMPONENT TO USE STATE IS TIDEOUS SO WE USE FUNCTION COMPONENT
+
+COMPONENT LIFE-CYCLE METHOD:
+step 1: MOUNT (birth): when component is initially rendered in a DOM/screen.
+step 2: UPDATE: component is being modified/updated like props and state.
+step 3: UNMOUNT (death): component is removed from DOM.
+
+accessing component when it is created ,updated, deleted:
+we use METHODS:
+METHOD 1: Mounting : constructor , render , componentDidMount //data flow
+ constructor-> function ->initially by compiler
+ render -> take care of logic and combining more components
+ componentDidMount -> use like side effects like calling API for getting user data from database ,external call then passing to constructor to update the state
+
+dataFlow:
+import React from "react";
+
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      planet: "earth", //data only User component can hold,no other component can access this data
+    };
+    console.log("Hye I'm from Constructor");
+  }
+
+  componentDidMount(){
+    console.log("Hey I'm from componentDidMount");
+  }
+
+  render() {
+    console.log("Hey I'm from Render()");
+    return (
+      <div>
+        <h1> {this.props.name} </h1>
+        <p> {this.props.description} </p>
+        <h3> {this.state.planet} </h3>
+      </div>
+    );
+  }
+}
+
+export default User;
+  
+
+  TO CHANGE EARTH-> MARS USING componentDidMount:
+  componentDidMount() {
+    this.setState({ planet: "mars" });  //setState:in-built method
+  }
