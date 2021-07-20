@@ -101,11 +101,11 @@ step 3: UNMOUNT (death): component is removed from DOM.
 
 accessing component when it is created ,updated, deleted:
 we use METHODS:
-METHOD 1: Mounting : constructor , render , componentDidMount //data flow
+STEP 1: Mounting : constructor , render , componentDidMount //data flow
  constructor-> function ->initially by compiler
  render -> take care of logic and combining more components
  componentDidMount -> use like side effects like calling API for getting user data from database ,external call then passing to constructor to update the state
-
+                  -> it is a method that will be executed at initial render.
 dataFlow:
 import React from "react";
 
@@ -142,3 +142,16 @@ export default User;
   componentDidMount() {
     this.setState({ planet: "mars" });  //setState:in-built method
   }
+
+STEP 2: UPDATING: 
+constructor
+[not working] static getDerivedStateFromProps(props,state)->return null or new state object
+shouldComponentUpdate(nextProp , nextState)->compare current state with next state.
+                                            ->if change made return "true"
+                                            -> else "false"
+render()
+getSnapshotBeforeUpdate(prevpropss , prevState)->true or false
+componentDidUpdate()-> after component updatation 
+
+STEP 3: UNMOUNTING:
+componentWillUnmount()

@@ -11,7 +11,33 @@ class User extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ planet: "mars" });
+    this.setState({ planet: "saturn" });
+  }
+  //static getDerivedStateFromProps(prop, state) {
+  //console.log("I'm from get derived state from props");
+  // return { planet: "Jupiter" };
+  //}
+
+  shouldComponentUpdate(nextProp, nextState) {
+    console.log(" from shouldComponentUpdate");
+    console.log({
+      nextProp,
+      nextState,
+    });
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevprop, prevState) {
+    console.log(" from getSnapshotBeforeUpdate");
+    console.log({
+      prevprop,
+      prevState,
+    });
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
   render() {
