@@ -57,7 +57,7 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        <h1> {this.props.name} </h1>   //this being used before props
+        <h1> {this.props.name} </h1>   //this being used before props in state
         <p>{this.props.description}</p>
       </div>
     );
@@ -92,7 +92,6 @@ class User extends React.Component {
 
 export default User;
 
-BUT BY USING CLASS COMPONENT TO USE STATE IS TIDEOUS SO WE USE FUNCTION COMPONENT
 
 COMPONENT LIFE-CYCLE METHOD:
 step 1: MOUNT (birth): when component is initially rendered in a DOM/screen.
@@ -155,3 +154,76 @@ componentDidUpdate()-> after component updatation
 
 STEP 3: UNMOUNTING:
 componentWillUnmount()
+
+LIFE CYCLE
+
+
+import React from "react";
+
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      planet: "earth", //data only User component can hold,no other component can access this data
+    };
+    console.log("Hye I'm from Constructor");
+  }
+
+  componentDidMount() {
+    this.setState({ planet: "saturn" });
+  }
+  //static getDerivedStateFromProps(prop, state) {
+  //console.log("I'm from get derived state from props");
+  // return { planet: "Jupiter" };
+  //}
+
+  shouldComponentUpdate(nextProp, nextState) {
+    console.log(" from shouldComponentUpdate");
+    console.log({
+      nextProp,
+      nextState,
+    });
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevprop, prevState) {
+    console.log(" from getSnapshotBeforeUpdate");
+    console.log({
+      prevprop,
+      prevState,
+    });
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  render() {
+    console.log("Hey I'm from Render()");
+    return (
+      <div>
+        <h1> {this.props.name} </h1>
+        <p> {this.props.description} </p>
+        <h3> {this.state.planet} </h3>
+      </div>
+    );
+  }
+}
+
+export default User;
+
+
+
+
+
+
+//BUT BY USING CLASS COMPONENT TO USE STATE IS TIDEOUS SO WE USE HOOKS.
+
+HOOKS -> power to your functional components.
+
+//change class based component to function based component.
+    SYNTAX OF HOOK: start with "use" preceeding "purpose Of Hook"
+   //  useState(the value , the function to update the state);
+  
